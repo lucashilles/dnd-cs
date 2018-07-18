@@ -24,7 +24,7 @@ class SheetJSON {
     mapData['race'] = sheet.race;
     mapData['classe'] = sheet.classe;
     mapData['sexo'] = sheet.sexo;
-    String json = JSON.encode(mapData);
-    return json;
+    String jsonStr = json.encode(mapData);
+    return jsonStr;
   }
 }

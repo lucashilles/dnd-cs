@@ -6,6 +6,7 @@ class CharInfo extends StatefulWidget {
 }
 
 class _CharInfoState extends State<CharInfo> {
+
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   List<String> _races = <String>[
     'Anão',
