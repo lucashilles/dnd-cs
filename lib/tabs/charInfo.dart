@@ -5,9 +5,10 @@ class CharInfo extends StatefulWidget {
   _CharInfoState createState() => new _CharInfoState();
 }
 
-class _CharInfoState extends State<CharInfo> {
+class _CharInfoState extends State<CharInfo>{
+  GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  String _nome = '';
 
-  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   List<String> _races = <String>[
     'Anão',
     'Duende',
@@ -32,7 +33,7 @@ class _CharInfoState extends State<CharInfo> {
     'Wizard'
   ];
   String _race = 'Anão';
-  String _class = 'Bárbaro';
+  String _classe = 'Bárbaro';
   int _sexo = 0;
 
   @override
@@ -47,7 +48,12 @@ class _CharInfoState extends State<CharInfo> {
           child: new ListView(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             children: <Widget>[
-              new TextFormField(
+              new TextField(
+                onChanged: (String nome) {
+                  setState(() {
+                    _nome = nome;
+                  });
+                },
                 decoration: const InputDecoration(
                   icon: const Icon(Icons.person),
                   hintText: 'Seu nome',
@@ -86,11 +92,7 @@ class _CharInfoState extends State<CharInfo> {
                   child: new DropdownButton<String>(
                     value: _race,
                     isDense: true,
-                    onChanged: (String newValue) {
-                      setState(() {
-                        _race = newValue;
-                      });
-                    },
+                    onChanged: (String newValue) {},
                     items: _races.map((String value) {
                       return new DropdownMenuItem<String>(
                         value: value,
@@ -108,11 +110,11 @@ class _CharInfoState extends State<CharInfo> {
                 //isEmpty: _class == '',
                 child: new DropdownButtonHideUnderline(
                   child: new DropdownButton<String>(
-                    value: _class,
+                    value: _classe,
                     isDense: true,
                     onChanged: (String newValue) {
                       setState(() {
-                        _class = newValue;
+                        _classe = newValue;
                       });
                     },
                     items: _classes.map((String value) {

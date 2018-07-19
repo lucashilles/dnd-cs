@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CharSkills extends StatelessWidget {
+class CharEquip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
@@ -9,11 +9,11 @@ class CharSkills extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             new Icon(
-              Icons.favorite,
+              Icons.assessment,
               size: 160.0,
               color: Colors.red,
             ),
-            new Text('Second Tab'),
+            new Text('Third Tab'),
           ],
         ),
       ),
