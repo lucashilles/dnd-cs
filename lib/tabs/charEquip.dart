@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CharSkills extends StatelessWidget {
+class CharEquip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
@@ -13,7 +13,7 @@ class CharSkills extends StatelessWidget {
               size: 160.0,
               color: Colors.red,
             ),
-            new Text('Second Tab'),
+            new Text('Third Tab'),
           ],
         ),
       ),

@@ -10,10 +10,17 @@ class NewSheetForm extends StatefulWidget {
   _NewSheetFormState createState() => new _NewSheetFormState();
 }
 
-class _NewSheetFormState extends State<NewSheetForm> {
-  CharInfo charInfoTab = new CharInfo();
-  CharSkills charSkillsTab = new CharSkills();
-  CharEquip charEquipTab = new CharEquip();
+class _NewSheetFormState extends State<NewSheetForm>
+    with SingleTickerProviderStateMixin {
+  CharInfo _charInfoTab = new CharInfo();
+  CharSkills _charSkillsTab = new CharSkills();
+  CharEquip _charEquipTab = new CharEquip();
+
+  TabController _controller;
+
+  void _dismissKeyboard() {
+    FocusScope.of(context).requestFocus(new FocusNode());
+  }
 
   Future<bool> _closeConfirm() {
     showDialog<Null>(
@@ -43,32 +50,52 @@ class _NewSheetFormState extends State<NewSheetForm> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _controller = new TabController(length: 3, vsync: this, initialIndex: 0);
+    _controller.addListener(_dismissKeyboard);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return new WillPopScope(
       onWillPop: _closeConfirm,
-      child: new DefaultTabController(
-        length: 3,
-        child: new Scaffold(
-          appBar: new AppBar(
-            title: new Text('Dados do personagem'),
-            bottom: new TabBar(
-              tabs: [
-                new Tab(
-                  icon: new Icon(Icons.perm_identity),
-                ),
-                new Tab(
-                  icon: new Icon(Icons.description),
-                ),
-                new Tab(
-                  icon: new Icon(Icons.work),
-                ),
-              ],
-            ),
+      child: new Scaffold(
+        appBar: new AppBar(
+          title: const Text('Dados do personagem'),
+          backgroundColor: Colors.lightGreen,
+          actions: <Widget>[
+            new IconButton(
+                icon: const Icon(Icons.check),
+                onPressed: () {
+                  Navigator.pop(context);
+                }),
+          ],
+          bottom: new TabBar(
+            controller: _controller,
+            tabs: [
+              new Tab(
+                icon: const Icon(Icons.perm_identity),
+              ),
+              new Tab(
+                icon: const Icon(Icons.description),
+              ),
+              new Tab(
+                icon: new Icon(Icons.work),
+              ),
+            ],
           ),
-          body: TabBarView(
-              physics: new NeverScrollableScrollPhysics(),
-              children: [charInfoTab, charSkillsTab, charEquipTab]),
         ),
+        body: TabBarView(
+            controller: _controller,
+            physics: const NeverScrollableScrollPhysics(),
+            children: [_charInfoTab, _charSkillsTab, _charEquipTab]),
       ),
     );
   }

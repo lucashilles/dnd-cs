@@ -78,7 +78,6 @@ class _CharInfoState extends State<CharInfo>{
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   icon: const Icon(Icons.trending_up),
-                  //hintText: 'Idioma comum',
                   labelText: 'Nível',
                 ),
               ),
@@ -92,7 +91,11 @@ class _CharInfoState extends State<CharInfo>{
                   child: new DropdownButton<String>(
                     value: _race,
                     isDense: true,
-                    onChanged: (String newValue) {},
+                    onChanged: (String newValue) {
+                      setState(() {
+                        _race = newValue;
+                      });
+                    },
                     items: _races.map((String value) {
                       return new DropdownMenuItem<String>(
                         value: value,

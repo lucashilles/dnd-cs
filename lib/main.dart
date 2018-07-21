@@ -1,3 +1,4 @@
+import 'package:dnd_cs/testScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:dnd_cs/newSheetForm.dart';
 import 'package:dnd_cs/src/fileManager.dart';
@@ -38,22 +39,22 @@ class MyHomePage extends StatelessWidget {
               padding: const EdgeInsets.all(20.0),
               children: <Widget>[
                 new ListTile(
-                  leading: const Icon(Icons.date_range),
-                  title: const Text('The calendar for the narrator'),
+                  leading: const Icon(Icons.arrow_forward),
+                  title: const Text('Legolas'),
                   onLongPress: () {
                     print('Long Press Range');
                   },
                 ),
                 new ListTile(
-                  leading: const Icon(Icons.dashboard),
-                  title: const Text('The dashboard for the narrator'),
+                  leading: const Icon(Icons.arrow_forward),
+                  title: const Text('Dovahkiin'),
                   onLongPress: () {
                     print('Long Press Dashboard');
                   },
                 ),
                 new ListTile(
-                  leading: const Icon(Icons.device_hub),
-                  title: const Text('The seila for the narrator'),
+                  leading: const Icon(Icons.arrow_forward),
+                  title: const Text('He-man'),
                   onLongPress: () {
                     print('Long Press Hub');
                   },
@@ -88,14 +89,20 @@ class MyHomePage extends StatelessWidget {
                     child: new Text(
                       'Testar arquivo',
                     ),
+//                    onPressed: () {
+//                      FileManager fileManager = new FileManager();
+//                      String _fileData;
+//
+//                      fileManager.readData().then((String data) {
+//                        _fileData = data;
+//                        print("Data from file: " + _fileData);
+//                      });
+//                    },
                     onPressed: () {
-                      FileManager fileManager = new FileManager();
-                      String _fileData;
-
-                      fileManager.readData().then((String data) {
-                        _fileData = data;
-                        print("Data from file: " + _fileData);
-                      });
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TestScreen()),
+                      );
                     },
                   ),
                 ],
